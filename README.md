@@ -1,0 +1,2 @@
+# largeDataDisplayPlatform
+本案例是利用ECharts制作的大数据可视化平台，新手上路不喜勿喷
