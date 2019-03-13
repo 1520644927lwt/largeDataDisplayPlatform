@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>武陵区政府网站数据分析平台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/layer-animate.css"/>
+    <style type="text/css">
+        
+        body{
+            width: 100%;
+            display: inline;
+            background-color: #191919; 
+            font-family: "PingFang SC"；
+        }
+
+        .title{
+            margin-top: 20px;
+            font-size: 25px;
+            color: #fff;
+        }
+
+        .content{
+            width: 100%;
+            margin-top: 20px;
+        }
+        iframe{
+            border-radius: 5px;
+        }
+        .msg-layer{
+            background-color: #171F28;
+        }
+    </style>
+</head>
+<body>
+	<center>
+        <span class="title">武陵区政府网站数据分析平台</span>
+        <div class="content">
+            <iframe id="m1" src="m1/m1.html" width="70%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" onload="startInit('m1',50);"></iframe>
+            <iframe id="m2" src="m2/m2.html" width="20%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" onload="startInit('m2',50);"></iframe>
+            <br>
+            <iframe id="m3" src="m3/m3.html" width="25%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" onload="startInit('m3',50);"></iframe>
+            <iframe id="m4" src="m4/m4.html" width="40%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" onload="startInit('m4',50);"></iframe>
+            <iframe id="m5" src="m5/m5.html" width="23%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" onload="startInit('m5',50);"></iframe>
+            <input type="text" id="btn" style="width: 0; height: 0;position: absolute; left: -100000;background-color: #191919;border: none;">
+            <input type="text" id="btn1" style="width: 0; height: 0;position: absolute; left: -100000;background-color: #191919;border: none;">
+        </div>
+	</center>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/method.js"></script>
+<script type="text/javascript">
+	(function(){
+
+    var IframeOnClick = {
+        resolution: 200,
+        iframes: [],
+        interval: null,
+        Iframe: function () {
+            this.element = arguments[0];
+            this.cb = arguments[1];
+        },
+        track: function (element, cb) {
+            this.iframes.push(new this.Iframe(element, cb));
+            var _this = this;
+            this.interval = setInterval(function () {
+            _this.checkClick();
+            }, this.resolution);
+        },
+        checkClick: function () {
+            if (document.activeElement) {
+                var activeElement = document.activeElement;
+                for (var i in this.iframes) {
+                    if (activeElement === this.iframes[i].element) { // user is in this Iframe
+                        this.iframes[i].cb.apply(window, []);
+                        var btn = document.getElementById("btn")
+                        btn.focus()
+                    }
+                }
+            }
+        }
+    };
+    IframeOnClick.track(document.getElementById("m2"), function () {
+        var obj={
+           type:"layerFadeIn",
+           content:" <iframe id='m2' src='m2/m2.html' width='100%' height='300px' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'></iframe>",
+           area:["300px","auto"]
+       };
+       method.msg_layer(obj);
+    });
+
+    IframeOnClick.track(document.getElementById("m4"), function () {
+        var obj={
+           type:"layerFadeIn",
+           content:" <iframe id='m4' src='m4/m4.html' width='100%' height='300px' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'></iframe>",
+           area:["600px","auto"]
+       };
+       method.msg_layer(obj);
+    });
+
+    IframeOnClick.track(document.getElementById("m5"), function () {
+        var obj={
+           type:"layerFadeIn",
+           content:" <iframe id='m5' src='m5/m5.html' width='100%' height='300px' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'></iframe>",
+           area:["400px","auto"]
+       };
+       method.msg_layer(obj);
+    });
+    $('#btn').click(function() {
+        var obj={
+           type:"layerFadeIn",
+           content:" <iframe id='m1' src='m1/m1.html' width='100%' height='300px' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'></iframe>",
+           area:["600px","auto"]
+       };
+       method.msg_layer(obj);
+    });
+    $('#btn1').click(function() {
+        var obj={
+           type:"layerFadeIn",
+           content:" <iframe id='m3' src='m3/m3.html' width='100%' height='300px' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='no' allowtransparency='yes'></iframe>",
+           area:["400px","auto"]
+       };
+       method.msg_layer(obj);
+    });
+    var browserVersion = window.navigator.userAgent.toUpperCase();
+    var isOpera = browserVersion.indexOf("OPERA") > -1 ? true : false;
+    var isFireFox = browserVersion.indexOf("FIREFOX") > -1 ? true : false;
+    var isChrome = browserVersion.indexOf("CHROME") > -1 ? true : false;
+    var isSafari = browserVersion.indexOf("SAFARI") > -1 ? true : false;
+    var isIE = (!!window.ActiveXObject || "ActiveXObject" in window);
+    var isIE9More = (! -[1, ] == false);
+    function reinitIframe(iframeId, minHeight) {
+        try {
+            var iframe = document.getElementById(iframeId);
+            var minWidth=document.getElementById(iframeId).scrollWidth;
+            var bHeight = 0;
+            var bWidth = 0;
+            if (isChrome == false && isSafari == false){
+                bHeight = iframe.contentWindow.document.body.scrollHeight;
+                bWidth = iframe.contentWindow.document.body.scrollWidth;}
+
+
+            var dHeight = 0;
+            var dWidth = 0;
+            if (isFireFox == true){
+                dHeight = iframe.contentWindow.document.documentElement.offsetHeight + 2;
+                dWidth = iframe.contentWindow.document.documentElement.scrollWidth;}
+
+            else if (isIE == false && isOpera == false){
+                dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                dWidth = iframe.contentWindow.document.documentElement.scrollWidth;
+            }
+
+            else if (isIE == true && isIE9More) {//ie9+
+                var heightDeviation = bHeight - eval("window.IE9MoreRealHeight" + iframeId);
+                var widthDeviation = dWidth - eval("window.IE9MoreRealWidth" + iframeId);
+                if (heightDeviation == 0) {
+                    bHeight += 3;
+                } else if (heightDeviation != 3) {
+                    eval("window.IE9MoreRealHeight" + iframeId + "=" + bHeight);
+                    eval("window.IE9MoreRealWidth" + iframeId + "=" + dWidth);
+                    bHeight += 3;
+                }
+            }
+            else//ie[6-8]、OPERA
+                bHeight += 3;
+            var height = Math.max(bHeight, dHeight);
+            var width = Math.max(bWidth, dWidth);
+            if (height < minHeight) height = minHeight;
+            if (width < minWidth) width = minWidth;
+            console.log("height==="+height);
+            console.log("width==="+width);
+            iframe.style.height = height + "px";
+            iframe.style.width = width + "px";
+            return;
+        } catch (ex) { }
+    }
+    function startInit(iframeId, minHeight) {
+
+        eval("window.IE9MoreRealHeight" + iframeId + "=0");
+        reinitIframe(iframeId, minHeight);
+    }
+    window.startInit=startInit;
+    
+})()
+        
+</script>
+</html>

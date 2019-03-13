@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块4</title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/m4.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+</head>
+<body>
+	<div class="content-module4">
+		<div class="content-module4-table4">
+			<center>
+			<span style="font-size: 16px;color: #fff;">栏目更新</span>
+			</center>
+			<div id="table4"></div>
+			<div class="content-module4-icon">
+				<table>
+					<tr>
+						<th>
+							<div style="width: 5px;height: 5px;background-color: #61C4C7;border-radius: 5px;"></div>
+						</th>
+						<th class="name">
+							政策文件
+						</th>
+						<th>
+							224
+						</th>
+						<th>
+							41%
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<div style="width: 5px;height: 5px;background-color: #B2A4DA;border-radius: 5px;"></div>
+						</th>
+						<th class="name">
+							动态
+						</th>
+						<th>
+							224
+						</th>
+						<th>
+							41%
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<div style="width: 5px;height: 5px;background-color: #6DB1EA;border-radius: 5px;"></div>
+						</th>
+						<th class="name">
+							通知公告
+						</th>
+						<th>
+							224
+						</th>
+						<th>
+							41%
+						</th>
+					</tr>
+					<tr style="border-bottom: none;">
+						<th>
+							<div style="width: 5px;height: 5px;background-color: #F5BB89;border-radius: 5px;"></div>
+						</th>
+						<th class="name">
+							要闻
+						</th>
+						<th>
+							224
+						</th>
+						<th>
+							41%
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="content-module4-border"></div>
+			<div class="content-module4-table5">
+				<div class="content-module4-table5-title">
+					<span style="text-align: left;float: left;">政策文件</span>
+					<span style="text-align: left;float: right;">时间（天）</span>
+				</div>
+				<div class="content-module4-table5-right">
+					<table class="content-module4-table5-right-bottom">
+								
+					</table>
+				</div>
+			</div>
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript">
+	(function($){
+        $(window).on("load",function(){
+            $(".content-module4-table5-right").mCustomScrollbar({
+            	theme:"#0d1820", //主题颜色
+                    scrollButtons:{
+                        enable:true //是否使用上下滚动按钮
+                    },
+                    horizontalScroll : false//水平滚动条
+            });
+        });
+    })(jQuery);
+	getTable4();
+	getModule4TableData();
+	function getTable4() {
+		// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+		var chart1 = echarts.init(document.getElementById("table4"));
+		
+		// 圆环图各环节的颜色
+		var color = ['#61C4C7', '#B2A4DA', '#6DB1EA', '#F5BB89'];
+		
+		// 指定图表的配置项和数据
+		var option = {
+		    // 提示框
+		    tooltip: {
+		        show: true,             
+		        formatter: '{b} </br> {c}件 </br> 占比{d}%' 
+		    },
+		    grid: {
+		        left: '5%',
+		        right: '4%',
+		        bottom: '3%',
+		        top:'-10%',
+		        containLabel: true
+		    },
+		    graphic:[
+		    {
+	            type:'text',
+	            left:'center',
+	            top:'30%',
+	            style:{
+	                text:'总比更新',
+	                fill:'#fff',
+	                textAlign:'center',
+	                width:30,
+	                height:30,
+	                fontSize:10,
+	            }
+	        },{
+	            type:'text',
+	            left:'center',
+	            top:'40%',
+	            style:{
+	                text:'50%',
+	                fill:'#fff',
+	                textAlign:'center',
+	                width:30,
+	                height:30,
+	                fontSize:30,
+	            }
+	        },{
+	            type:'text',
+	            left:'center',
+	            top:'63%',
+	            style:{
+	                text:'已达标',
+	                fill:'#63F4E1',
+	                textAlign:'center',
+	                width:30,
+	                height:30,
+	                fontSize:10,
+	            }
+	        }],
+	    series: [
+	        {
+	            name:'访问来源',
+	            type:'pie',
+	            title:[{
+	                text: '商城各服装销量对比'	    
+	            }],
+	            radius: ['50%', '70%'],
+	            avoidLabelOverlap: false,
+	            label: {
+	                normal: {
+	                    show: false,
+	                    position: 'center'
+	                }
+	            },
+	            labelLine: {
+	                normal: {
+	                    show: false
+	                }
+	            },
+	            color:color,
+	            data:[
+	                {value:335, name:'政策文件'},
+	                {value:310, name:'动态'},
+	                {value:234, name:'通知公告'},
+	                {value:135, name:'要闻'}
+	            ]
+	        }
+	    ]
+		};
+		
+		// 使用刚指定的配置项和数据显示图表
+		chart1.setOption(option)
+	}
+	function getModule4TableData(){
+		var html = $('.content-module4-table5-right-bottom').html();
+		for (var i = 0; i < 50; i++) {
+			html = html + "<tr>"+
+							 "<th>"+
+							 	"<div title='省军区副司令检查省军区省军区副司令检查省军区'>省军区副司令检查省军区省军区副司令检查省军区</div>"+
+							 "</th>"+
+							  "<th>72</th>"+
+						  "</tr>";
+		}
+		$('.content-module4-table5-right-bottom').html(html);
+	}
+</script>
+</html>

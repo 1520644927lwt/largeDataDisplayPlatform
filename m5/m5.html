@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块5</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/m5.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+</head>
+<body>
+	<div class="content-module5">
+		<div class="content-module5-table6-title">
+			<span style="text-align: left;float: left;margin-left: 5%;">其他网站</span>
+			<span style="text-align: left;float: right;margin-right: 5%;">得分</span>
+		</div>
+		<div class="content-module5-table6"> 
+			<table class="content-module5-table6-bottom">
+							
+			</table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript">
+	(function($){
+        $(window).on("load",function(){
+            $(".content-module5-table6").mCustomScrollbar({
+            	theme:"#0d1820", //主题颜色
+                    scrollButtons:{
+                        enable:true //是否使用上下滚动按钮
+                    },
+                    horizontalScroll : false//水平滚动条
+            });
+        });
+    })(jQuery);
+
+	var data = [{
+		name:"武陵区政府税务局1",
+		val:20
+	},{
+		name:"武陵区政府税务局2",
+		val:80
+	},{
+		name:"武陵区政府税务局3",
+		val:34
+	},{
+		name:"武陵区政府税务局4",
+		val:56
+	},{
+		name:"武陵区政府税务局5",
+		val:74
+	},{
+		name:"武陵区政府税务局6",
+		val:32
+	},{
+		name:"武陵区政府税务局7",
+		val:12
+	},{
+		name:"武陵区政府税务局8",
+		val:32
+	},{
+		name:"武陵区政府税务局9",
+		val:54
+	},{
+		name:"武陵区政府税务局10",
+		val:32
+	},{
+		name:"武陵区政府税务局11",
+		val:31
+	},{
+		name:"武陵区政府税务局12",
+		val:54
+	},{
+		name:"武陵区政府税务局13",
+		val:76
+	},{
+		name:"武陵区政府税务局14",
+		val:23
+	},{
+		name:"武陵区政府税务局15",
+		val:56
+	},{
+		name:"武陵区政府税务局16",
+		val:12
+	},{
+		name:"武陵区政府税务局17",
+		val:35
+	},{
+		name:"武陵区政府税务局18",
+		val:64
+	},{
+		name:"武陵区政府税务局19",
+		val:23
+	}];
+
+	getModule5TableData();
+	function getModule5TableData(){
+		var A = data;
+		//排序
+		CocktailSort(A,A.length);
+		var html = $('.content-module5-table6-bottom').html();
+		for (var i = 0; i < A.length; i++) {
+			var color = "#ffffff";
+			if (A[i].val <= 50) {
+				color = "#FF5362";
+			}else if(A[i].val <= 70){
+				color = "#FFDC61";
+			}else{
+				color = "#ffffff";
+			}
+			html = html + "<tr>"+
+							 "<th>"+
+							 	"<div title='"+A[i].name+"' style='color:"+color+"'>"+A[i].name+"</div>"+
+							 "</th>"+
+							  "<th style='color:"+color+"'>"+A[i].val+"</th>"+
+						  "</tr>";
+		}
+		$('.content-module5-table6-bottom').html(html);
+	}
+
+	/*鸡尾酒排序*/
+
+	function Swap(A,i,j){
+		temp = A[i];
+	    A[i] = A[j];
+	    A[j] = temp;
+	}
+
+	function CocktailSort(A,n)
+	{
+	    var left = 0;                            // 初始化边界
+	    var right = n - 1;
+	    while (left < right)
+	    {
+	        for (var i = left; i < right; i++)   // 前半轮,将最大元素放到后面
+	        {
+	            if (A[i].val > A[i + 1].val)
+	            {
+	                Swap(A, i, i + 1);
+	            }
+	        }
+	        right--;
+	        for (var i = right; i > left; i--)   // 后半轮,将最小元素放到前面
+	        {
+	            if (A[i - 1].val > A[i].val)
+	            {
+	                Swap(A, i - 1, i);
+	            }
+	        }
+	        left++;
+	    }
+	}
+
+
+</script>
+</html>

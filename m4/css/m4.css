@@ -1,0 +1,111 @@
+body{
+	width: 100%;
+	height: 300px;
+	background-color: #171F28; 
+	font-family: "PingFang SC"；
+}
+.content-module4{
+	width: 100%;
+	height: 100%;
+	background-color: #171F28;
+	float: left;
+	border-radius: 5px;
+}
+.content-module4-table4{
+	width: 40%;
+	height: 88%;
+	float: left;
+	margin-top: 3%;
+	margin-left: 7%;
+}
+#table4{
+	width: 100%;
+	height: 50%;
+}
+.content-module4-icon{
+	width: 100%;
+	height: 30%;
+
+}
+.content-module4-icon table{
+	width: 100%;
+	color: #fff;
+	font-size: 14px;
+	font-weight:normal;
+	border-collapse:collapse;
+}
+.content-module4-icon table tr{
+	border-bottom: 1px solid #fff2;
+}
+.content-module4-icon table tr th{
+	padding: 5px;
+}
+.name{
+	text-align: left;
+}
+.content-module4-border{
+	width: 1px;
+	height: 96%;
+	float: left;
+	background-color: #fff2;
+	margin-left: 3%;
+	margin-top: 1%;
+}
+
+.content-module4-table5{
+	width: 40%;
+	height: 88%;
+	float: left;
+	margin-top: 3%;
+	margin-left: 3%;
+}
+.content-module4-table5-title{
+	width: 100%;
+	height: 40px;
+	color: #fff;
+	line-height: 40px;
+}
+.content-module4-table5-right{
+	width: 100%;
+	height: 85%;
+	background-color: #0d1820;
+	border-radius: 5px;
+	overflow:auto;
+}
+.content-module4-table5-right table{
+	width: 95%;
+	margin: 5px;
+	color: #fff;
+	font-size: 14px;
+}
+.content-module4-table5-right table tr th{
+	font-weight:normal;
+}
+.content-module4-table5-right table tr th div{
+	width: 100px;
+	overflow: hidden;/*内容超出后隐藏*/
+	text-overflow: ellipsis;/* 超出内容显示为省略号*/
+	white-space: nowrap;/*文本不进行换行*/
+}
+
+.content-module2-table tr th,.content-module4-icon table tr th{
+	padding-left: 10px;
+	font-weight:normal;
+}
+/*.content-module2-bottom::-webkit-scrollbar-track,.content-module4-table5-right::-webkit-scrollbar-track,.content-module5-table6::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background-color: #0d1820;
+}
+.content-module2-bottom::-webkit-scrollbar,.content-module4-table5-right::-webkit-scrollbar,.content-module5-table6::-webkit-scrollbar
+{
+  width: 5px;
+  background-color: rgba(0,0,0,0);
+}
+.content-module2-bottom::-webkit-scrollbar-thumb,.content-module4-table5-right::-webkit-scrollbar-thumb,.content-module5-table6::-webkit-scrollbar-thumb
+{
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.3);
+  background-color: #555;
+}*/

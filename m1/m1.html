@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块1</title>
+	<link rel="stylesheet" type="text/css" href="css/m1.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<body>
+	<center>
+		<div class="content-module1">
+			<div class="content-module1-title">
+				<span>近一年新闻浏览变化量</span>
+					<select class="content-module1-title-time">
+						<option value="week">周</option>
+						<option value="month">月</option>
+						<option value="year">年</option>
+				</select>
+			</div>
+			<div class="content-module1-title-border"></div>
+			<div id="table1" class="content-module1-table1"></div>
+		</div>
+	</center>
+	
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript">
+	var weekX = ['周一','周二','周三','周四','周五','周六','周日']; 
+	var weekY = [100,283,432,256,125,123,439];
+	var monthX = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']; 
+	var monthY = [120, 132, 101, 134, 90, 230, 210,120, 132, 101, 134, 90, 230, 210];
+	var yearX = ["2010年","2011年","2012年","2013年","2014年","2015年","2016年","2017年","2018年"];
+	var yearY = [789,987,789,708,690,879,768,697,989];
+	$('.content-module1-title-time').change(function(){ 
+		var val = $(this).children('option:selected').val();
+		switch(val){ 
+			case 'week': getTable1(weekX,weekY);  break;
+			case 'month': getTable1(monthX,monthY);  break;
+			case 'year': getTable1(yearX,yearY);  break;
+			default: getTable1(weekX,weekY); break;
+		}
+	});
+	getTable1(weekX,weekY);
+	$("#table1").click(function() {
+		parent.$(window.parent.document).find('#btn').click();
+	});
+	function getTable1(xData,yData) {
+	// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('table1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+		    tooltip : {
+		        trigger: 'axis',
+		        axisPointer: {
+		            type: 'cross',
+		            label: {
+		                backgroundColor: '#000000'
+		            }
+		        }
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '5%',
+		        containLabel: true,
+		        show:false
+		    },
+		    xAxis : [
+		        {
+		            type : 'category',
+		            boundaryGap : false,
+		            color:'#fff',
+		            data : xData,
+		            axisLine:{
+		            	lineStyle:{
+		            		color:'#fff'
+		            	}
+		            },
+		            splitLine: {
+			            show: false
+			        }
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            axisLine:{
+		            	lineStyle:{
+		            		color:'#fff'
+		            	}
+		            },
+		            splitLine: {
+			            show: false
+			        }
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'浏览量',
+		            type:'line',
+		            stack: '总量',
+		            areaStyle: {
+		            	color:"#FECE1C66"
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#FECE1C'
+		                }
+		            },
+		            data:yData
+		        }
+		    ]
+		};
+
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+}
+</script>
+</html>

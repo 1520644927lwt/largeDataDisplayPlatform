@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块3</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/m3.css">
+</head>
+<body>
+	<div class="content-module3">
+		<div class="content-module3-title">
+			<span>访问IP数量</span>
+			<select class="content-module3-title-time">
+				<option value="week">周</option>
+				<option value="month">月</option>
+				<option value="year">年</option>
+			</select>
+			<div class="content-module3-title-icon">
+				<span>
+					<div style="width: 5px;height: 5px;background-color: #7B63F4;border-radius: 5px;margin:auto;position: absolute;top: 0;bottom: 0;margin-left: -10px;"></div>
+					<span id="time" style="font-size: 10px;">上周访问量</span>
+				</span>
+				<span>
+					<div style="width: 5px;height: 5px;background-color: #3FC4EC;border-radius: 5px;margin:auto;position: absolute;top: 0;bottom: 0;margin-left: -10px;right: 65px;"></div>
+					<span style="font-size: 10px;margin-left: 20px;">新增访问量</span>
+				</span> 
+			</div>
+		</div>
+		<div class="content-module3-title-border"></div>
+		<div id="table3" class="content-module3-table3">
+						
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript">
+	var weekS = [150,212,201,154,190,330,410,122]; 
+	var weekZ = [100,283,432,256,125,123,439,458];
+	var monthS = [382,125,98,345,376,234,236,125];
+	var monthZ = [210,131,110,143,190,123,232,289];
+	var yearS = [120,132,101,134,90,230,210,120];
+	var yearZ = [789,987,789,708,690,879,768,697];
+	$('.content-module3-title-time').change(function(){ 
+		var val = $(this).children('option:selected').val();
+		switch(val){ 
+			case 'week': getTable3(weekS,weekZ,"周");  $("#time").html("上周访问量");break;
+			case 'month': getTable3(monthS,monthZ,"月"); $("#time").html("上月访问量"); break;
+			case 'year': getTable3(yearS,yearZ,"年"); $("#time").html("上年访问量"); break;
+			default: getTable3(weekS,weekZ,"周"); $("#time").html("上周访问量");break;
+		}
+	});
+	$("#table3").click(function() {
+		parent.$(window.parent.document).find('#btn1').click();
+	});
+	getTable3(weekS,weekZ,"周");
+	function getTable3(sData,zData,time) {
+	
+    var myChart = echarts.init(document.getElementById('table3'));
+
+	var option = {
+		color: ["#7B63F4", "#3FC4EC"],
+	    tooltip : {
+	        trigger: 'axis',
+	        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+	            type : 'shadow',        // 默认为直线，可选为：'line' | 'shadow'
+	            label: {
+			                backgroundColor: '#000000'
+			            }
+	        }
+	    },
+	    grid: {
+	        left: '5%',
+	        right: '4%',
+	        bottom: '3%',
+	        top:'-10%',
+	        containLabel: true
+	    }, 
+	    tooltip: {           
+			trigger: 'axis'        
+		},      
+	    xAxis:  {
+			type: 'value',
+			splitLine: {
+				show: false
+			},            
+			axisLabel: {
+				show: false
+			},
+			axisTick: {show: false},//不显示刻度
+			axisLine: {show: false},
+			boundaryGap: false,//坐标轴两边留白策略
+		},   
+	    yAxis: {
+	        type: 'category',            
+			boundaryGap: false,            
+			position: 'top', 
+	        data:[
+	        	{
+	        		value:'石门县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'澧县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'临澧县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'安乡县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'武陵区',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'桃源县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'汉寿县',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	},
+	        	{
+	        		value:'鼎城区',
+					textStyle:{
+						color:'#ffffff'
+					}
+	        	}
+	        ],
+	        axisLine:{
+	        	lineStyle:{
+	        		color:'#ffffff'
+	        	},
+	        },
+	        splitLine: {show: false},            
+			axisTick: {show: false},//不显示刻度            
+			axisLine: {show: false}
+
+	    },
+	    series: [
+	        
+	        {
+	            name: '上'+time+'访问量',
+	            type: 'bar',
+	            stack: '总量',
+	            barWidth: 2, 
+	            barGap: '5px',
+	            data: sData
+	        },
+	        {
+	            name: '新增访问量',
+	            type: 'bar',
+	            stack: '总量',
+	            barWidth: 2, 
+	            barGap: '5px',
+	            data: zData
+	        }
+	    ]
+	};
+
+    myChart.setOption(option,true);
+}
+</script>
+</html>

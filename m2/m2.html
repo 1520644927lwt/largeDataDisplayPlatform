@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块2</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/m2.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css">
+</head>
+<body>
+	<div class="content-module2">
+		<div class="content-module2-right">
+			<span class="content-module2-right-grade">
+				良好
+			</span>
+			<span class="content-module2-right-number">
+				73
+				<span style="color: #fff;font-size: 20px;margin-left: -20px;">
+					分
+				</span>
+			</span>
+		</div>
+		<div id="table2" class="content-module2-left">
+						
+		</div>
+		<center>
+			<div class="content-module2-bottom">
+				<table class="content-module2-table">
+
+				</table>
+			</div>
+		</center>
+		
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript">
+	(function($){
+        $(window).on("load",function(){
+            $(".content-module2-bottom").mCustomScrollbar({
+            	theme:"#0d1820", //主题颜色
+                    scrollButtons:{
+                        enable:true //是否使用上下滚动按钮
+                    },
+                    horizontalScroll : false//水平滚动条
+            });
+        });
+    })(jQuery);
+	getTable2();
+	getModule2TableData();
+	function getTable2() {
+	// 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('table2'));
+
+        var option = {
+		    tooltip : {
+		        formatter: "{a} {b} : {c}%"
+		    },
+		    series: [
+		        {
+		            name: '下载扣分报告',
+		            type: 'gauge',
+		            coordinateSystem:'none',
+		            detail: {
+		            	formatter:'下载扣分报告',
+		            	color:'#ffffff',
+		            	fontSize:15,
+		            	lineHeight:40
+		            },
+		            data: [{value: 73}],
+		            axisLine: {            // 坐标轴线
+		                lineStyle: {       // 属性lineStyle控制线条样式
+		                    color: [[50/100, '#00EDCF'],[73/100, '#FECE1C'],[1, '#101419']], 
+		                    width: 10
+		                }
+		            },
+		            axisTick: {       
+		                length :10, 
+		                lineStyle: {       
+		                	color: '#171F28'
+		                }
+		            },
+		            splitLine: {           
+		                show: false,        
+		                length :30,         // 属性length控制线长
+		                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+		                    color: 'auto'
+		                }
+		            },
+		            itemStyle: {
+		            	color: {
+						    type: 'linear',
+						    x: 0,
+						    y: 0,
+						    x2: 0,
+						    y2: 1,
+						    colorStops: [{
+						        offset: 0, color: '#ffffff' // 0% 处的颜色
+						    }, {
+						        offset: 1, color: '#ffffff' // 100% 处的颜色
+						    }],
+						    globalCoord: false // 缺省为 false
+						}
+		            },
+		            markLine:{
+		            	label:{
+		            		show:false
+		            	}
+		            },
+		            axisLabel:{
+		            	formatter:function (value) {
+		            		return '';
+		            	}
+		            }
+		        }
+		    ]
+		};
+
+        myChart.setOption(option,true);
+}
+function getModule2TableData() {
+	var html = $('.content-module2-table').html();
+	for (var i = 0; i < 20; i++) {
+		html = html + "<tr>"+
+						 "<th class='m2-t1'>链接不可用</th>"+
+						  "<th class='m2-t2'>x3</th>"+
+						  "<th class='m2-t3'>-12</th>"+
+					  "</tr>";
+	}
+	$('.content-module2-table').html(html);
+}
+</script>
+</html>
